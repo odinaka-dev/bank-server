@@ -4,10 +4,15 @@ const UserSchemma = new mongoose.Schema({
   firstName: String,
   lastName: String,
   UserName: String,
+  Nationality: String,
   phone: String,
   email: String,
   password: String,
   accountNumber: String,
+  AccountType: String,
+  IdNumber: Number,
+  EmploymentStatus: String,
+  monthlyIncome: String,
   isRestricted: { type: Boolean, default: false },
 });
 

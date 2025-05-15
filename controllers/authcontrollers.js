@@ -15,10 +15,16 @@ exports.register = async (req, res) => {
     const user = await User.create({
       firstName,
       lastName,
+      UserName,
       phone,
       email,
       password: hashedPassword,
       accountNumber,
+      accountType,
+      Nationality,
+      IdNumber,
+      EmploymentStatus,
+      monthlyIncome,
     });
 
     // the response status
