@@ -10,8 +10,13 @@ dotenv.config();
 // middlewares and database connection initiated.
 const app = express();
 connectDB();
+app.use(cors({
+  origin: 'http://localhost:9002', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
 app.use(express.json());
-app.use(cors());
 
 // initial get request redirect to the homepage to prevent server error.
 app.get("/", (req, res) => {
