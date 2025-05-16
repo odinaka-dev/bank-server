@@ -11,7 +11,7 @@ dotenv.config();
 const app = express();
 connectDB();
 app.use(cors({
-  origin: 'http://localhost:9002', 
+  origin: ['http://localhost:9002', 'https://bank-taupe-ten.vercel.app']
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
