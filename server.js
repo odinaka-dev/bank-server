@@ -9,14 +9,22 @@ dotenv.config();
 // middlewares and database connection initiated.
 const app = express();
 connectDB();
+const cors = require('cors');
+
+// Allow origins for both local build and live build on vercel
+const allowedOrigins = ['http://localhost:3000', 'https://bank-taupe-ten.vercel.app'];
+
 app.use(cors({
-  origin: ['http://localhost:9002', 'https://bank-taupe-ten.vercel.app'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true, // for authorization headers or cookies
 }));
 
-app.options('*', cors());
 
 app.use(express.json());
 
