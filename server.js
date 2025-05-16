@@ -2,7 +2,6 @@ const express = require("express");
 const connectDB = require("./config/db");
 const dotenv = require("dotenv");
 const cors = require("cors");
-
 const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 dotenv.config();
@@ -16,6 +15,9 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
+
+app.options('*', cors());
+
 app.use(express.json());
 
 // initial get request redirect to the homepage to prevent server error.
