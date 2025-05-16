@@ -9,7 +9,6 @@ dotenv.config();
 // middlewares and database connection initiated.
 const app = express();
 connectDB();
-const cors = require('cors');
 
 // Allow origins for both local build and live build on vercel
 const allowedOrigins = ['http://localhost:3000', 'https://bank-taupe-ten.vercel.app'];
