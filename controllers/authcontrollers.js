@@ -169,15 +169,34 @@ exports.login = async (req, res) => {
 };
 
 // Get user dashboard
+// exports.getDashboard = async (req, res) => {
+//   try {
+//     const user = await User.findById(req.user.id);
+//     if (!user) return res.status(404).json({ error: "User not found" });
+
+//     const welcome = `Welcome ${user.lastName} ${user.firstName}`;
+//     res.json({ welcome, accountNumber: user.accountNumber });
+//   } catch (error) {
+//     console.error("Dashboard fetch error:", error);
+//     res.status(500).json({ error: "Failed to get dashboard" });
+//   }
+// };
+
 exports.getDashboard = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id);
-    if (!user) return res.status(404).json({ error: "User not found" });
+    const user = req.user; // Already attached by protect middleware
 
     const welcome = `Welcome ${user.lastName} ${user.firstName}`;
-    res.json({ welcome, accountNumber: user.accountNumber });
+    res.json({
+      welcome,
+      accountNumber: user.accountNumber,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+    });
   } catch (error) {
     console.error("Dashboard fetch error:", error);
     res.status(500).json({ error: "Failed to get dashboard" });
   }
 };
+
