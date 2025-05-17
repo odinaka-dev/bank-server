@@ -11,7 +11,7 @@ const app = express();
 connectDB();
 
 // Allow origins for both local build and live build on vercel
-const allowedOrigins = ['http://localhost:3000', 'https://bank-taupe-ten.vercel.app'];
+const allowedOrigins = ['http://localhost:9002', 'https://bank-taupe-ten.vercel.app'];
 
 app.use(cors({
   origin: function (origin, callback) {
